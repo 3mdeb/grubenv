@@ -20,8 +20,8 @@
 #define GRUBENV_SIZE 1024 /* bytes */
 #define GRUBENV_HEADER "# GRUB Environment Block\n"
 
-#define ERROR(M, ...) fprintf(stderr, "ERROR: %s:%d: " M "\n",\
-__FILE__, __LINE__, ##__VA_ARGS__)
+#define ERROR(M, ...) fprintf(stderr, "ERROR (%d): %s:%d: " M ": \n",\
+errno, __FILE__, __LINE__, ##__VA_ARGS__)
 
 
 /* Internal functions */
