@@ -25,7 +25,7 @@
 
 
 /* read environment from storage into RAM */
-char *grubenv_open(char *grubenv_file)
+char *grubenv_open(const char *grubenv_file)
 {
 	char *grubenv;
 	FILE *fp;
@@ -75,7 +75,7 @@ char *grubenv_open(char *grubenv_file)
 	return grubenv;
 }
 
-char *grubenv_find(char *grubenv, char *name)
+char *grubenv_find(const char *grubenv, const char *name)
 {
 	char *ptrline, *string;
 
@@ -97,7 +97,7 @@ char *grubenv_find(char *grubenv, char *name)
 	return ptrline;
 }
 
-int grubenv_llen(char *grubenv, char *ptrline)
+int grubenv_llen(const char *grubenv, char *ptrline)
 {
 	char *ptrstart = ptrline;
 	while (*ptrline != '\n') {
@@ -137,7 +137,8 @@ int grubenv_space(char *grubenv)
 }
 
 /* append single variable at the end of envblock stored in RAM */
-int grubenv_append(char *grubenv, char *name, char *value, int space)
+int grubenv_append(char *grubenv, const char *name, const char *value,
+	           int space)
 {
 	int nlen, vlen, llen, counter;
 	char *ptr, *line;
@@ -175,7 +176,7 @@ int grubenv_append(char *grubenv, char *name, char *value, int space)
 	return 0;
 }
 
-int grubenv_write(char *grubenv_file, char *grubenv)
+int grubenv_write(const char *grubenv_file, const char *grubenv)
 {
 	FILE *fp;
 	char *grubenv_file_new;
@@ -217,7 +218,7 @@ int grubenv_write(char *grubenv_file, char *grubenv)
 	return 0;
 }
 
-int grubenv_set(char *grubenv_file, char *name, char *value)
+int grubenv_set(const char *grubenv_file, const char *name, const char *value)
 {
 	char *grubenv;
 	char *found;
@@ -267,7 +268,7 @@ int grubenv_set(char *grubenv_file, char *name, char *value)
 		return ret;
 }
 
-int grubenv_unset(char *grubenv_file, char *name)
+int grubenv_unset(const char *grubenv_file, const char *name)
 {
 	char *grubenv;
 	char *found;

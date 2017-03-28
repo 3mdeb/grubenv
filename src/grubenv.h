@@ -26,15 +26,16 @@ errno, __FILE__, __LINE__, ##__VA_ARGS__)
 
 /* Internal functions */
 /* Exposed here for unit tests during development */
-char *grubenv_open(char *grubenv_file);
-char *grubenv_find(char *grubenv, char *name);
+char *grubenv_open(const char *grubenv_file);
+char *grubenv_find(const char *grubenv, const char *name);
 void grubenv_remove(char *grubenv, char *ptrline, int space);
 void grubenv_close(char *grubenv);
-int grubenv_append(char *grubenv, char *name, char *value, int space);
+int grubenv_append(char *grubenv, const char *name, const char *value,
+		   int space);
 int grubenv_space(char *grubenv);
-int grubenv_write(char *grubenv_file, char *grub_env);
-int grubenv_llen(char *grubenv, char *ptrline);
+int grubenv_write(const char *grubenv_file, const char *grubenv);
+int grubenv_llen(const char *grubenv, char *ptrline);
 
 /* only these should be called from external */
-int grubenv_set(char *grubenv_file, char *name, char *value);
-int grubenv_unset(char *grubenv_file, char *name);
+int grubenv_set(const char *grubenv_file, const char *name, const char *value);
+int grubenv_unset(const char *grubenv_file, const char *name);
