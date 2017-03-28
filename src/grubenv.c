@@ -164,6 +164,10 @@ int grubenv_append(char *grubenv, char *name, char *value, int space)
 
 	/* formatted name=value string */
 	line = malloc(llen);
+	if (!line) {
+		ERROR("Not enough memory\n");
+		return -ENOMEM;
+	}
 	snprintf(line, llen+1, "%s=%s\n", name, value);
 	memcpy(ptr, line, llen);
 	free(line);
@@ -181,7 +185,7 @@ int grubenv_write(char *grubenv_file, char *grubenv)
 	grubenv_file_new = malloc(strlen(grubenv_file) + 5);
 	if (!grubenv_file_new) {
 		ERROR("Not enough memory\n");
-		return -1;
+		return -ENOMEM;
 	}
 	/* copy with '\0' */
 	strncpy(grubenv_file_new, grubenv_file, strlen(grubenv_file) + 1);
